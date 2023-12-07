@@ -1,0 +1,4 @@
+Como rodar o sistema: 
+1 - Pelo terminal, navegue até a pasta atv-1 com o comando 'cd .\atv-1\'; 
+2 - Execute o comando 'npm install' (isso vai instalar todas as dependências); 
+3 - Rode o sistema com o comando 'npx ts-node .\teste\index.ts'

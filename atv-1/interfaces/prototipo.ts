@@ -1,3 +1,5 @@
+import Cliente from "../modelos/cliente";
+
 export default interface Prototipo {
-    clonar(): Prototipo
+    clonar(titular: Cliente): void
 }
