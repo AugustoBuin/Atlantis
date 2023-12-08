@@ -1,31 +1,35 @@
 import Impressor from "../interfaces/impressor";
 import Cliente from "../modelos/cliente";
-import ImpressorDocumentos from "./impressorDocumentos";
+import ImpressorMultiDocumentos from "./impressorMultiDocumentos";
+import ImpressorMultiTelefones from "./impressorMultiTelefones";
 import ImpressorEndereco from "./impressorEndereco";
 
-export default class ImpressaorCliente implements Impressor {
-    private cliente: Cliente
+export default class ImpressorCliente implements Impressor {
+    private cli: Cliente
     private impressor!: Impressor
 
     constructor(cliente: Cliente) {
-        this.cliente = cliente
-
+        this.cli = cliente
     }
+
     imprimir(): string {
-        let impressao = `****************************\n`
-            + `| Nome: ${this.cliente.Nome}\n`
-            + `| Nome social: ${this.cliente.NomeSocial}\n`
-            + `| Data de nascimento: ${this.cliente.DataNascimento.toLocaleDateString()}\n`
-            + `| Data de cadastro: ${this.cliente.DataCadastro.toLocaleDateString()}`
+        let print = `****************************\n`
+            + `| Nome: ${this.cli.getNome}\n`
+            + `| Nome social: ${this.cli.getNomeSocial}\n`
+            + `| Data de nascimento: ${this.cli.getDataNascimento.toLocaleDateString()}\n`
+            + `| Data de cadastro: ${this.cli.getDataCadastro.toLocaleDateString()}`
 
-        this.impressor = new ImpressorEndereco(this.cliente.Endereco)
-        impressao = impressao + `\n${this.impressor.imprimir()}`
+        this.impressor = new ImpressorEndereco(this.cli.getEndereco)
+        print = print + `\n${this.impressor.imprimir()}`
 
-        this.impressor = new ImpressorDocumentos(this.cliente.Documentos)
-        impressao = impressao + `\n${this.impressor.imprimir()}`
+        this.impressor = new ImpressorMultiDocumentos(this.cli.getDocumentos)
+        print = print + `\n${this.impressor.imprimir()}`
 
-        impressao = impressao + `\n****************************`
-        return impressao
+        this.impressor = new ImpressorMultiTelefones(this.cli.getTelefones)
+        print = print + `\n${this.impressor.imprimir()}`
+
+        print = print + `\n****************************`
+        return print
     }
 
 }

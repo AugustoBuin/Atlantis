@@ -2,18 +2,18 @@ import Impressor from "../interfaces/impressor";
 import Endereco from "../modelos/endereco";
 
 export default class ImpressorEndereco implements Impressor {
-    private endereco: Endereco
+    private end: Endereco
     constructor(endereco: Endereco) {
-        this.endereco = endereco
+        this.end = endereco
     }
     imprimir(): string {
-        let impressao = `| Endereco:\n`
-            + `| rua: ${this.endereco.Rua}\n`
-            + `| bairro: ${this.endereco.Bairro}\n`
-            + `| cidade: ${this.endereco.Cidade}\n`
-            + `| estado: ${this.endereco.Estado}\n`
-            + `| país: ${this.endereco.Pais}\n`
-            + `| código postal: ${this.endereco.Pais}`
-        return impressao
+        let print = `| Endereco:\n`
+            + `| rua: ${this.end.getRua}\n`
+            + `| bairro: ${this.end.getBairro}\n`
+            + `| cidade: ${this.end.getCidade}\n`
+            + `| estado: ${this.end.getEstado}\n`
+            + `| país: ${this.end.getPais}\n`
+            + `| código postal: ${this.end.getCodigoPostal}`
+        return print
     }
 }
